@@ -1,3 +1,5 @@
+// *********** Data Structures ***********
+
 // Linked List
 class Node {
   constructor(value) {
@@ -89,3 +91,14 @@ class LinkedList {
     console.log(list.join(" => "));
   }
 }
+
+// Stacks
+// Queues
+// Hash Tables
+// Binary Tree
+
+// *********** Algorithms ***********
+
+// Sorting
+// Binary Search
+// Recursion
