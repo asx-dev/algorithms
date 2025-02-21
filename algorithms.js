@@ -159,6 +159,59 @@ class Queue {
 }
 
 // Hash Tables
+class HashTable {
+  constructor(size = 53) {
+    this.keymap = new Array(size);
+  }
+
+  hashCode(key) {
+    if (typeof key !== "string") throw new Error("Keys must be strings");
+
+    let total = 0;
+    let PRIME_NUMBER = 31;
+
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+      let char = key[i].toLowerCase();
+      let value = char.charCodeAt(0) - 96;
+      total = (total * PRIME_NUMBER + value) % this.keymap.length;
+    }
+
+    return total;
+  }
+
+  set(key, value) {
+    let index = this.hashCode(key);
+
+    if (!this.keymap[index]) {
+      this.keymap[index] = [];
+    }
+
+    let pair = this.keymap[index]?.find((pair) => pair[0] === key);
+
+    if (pair) {
+      pair[1] = value;
+    } else {
+      this.keymap[index].push([key, value]);
+    }
+  }
+
+  get(key) {
+    let index = this.hashCode(key);
+    let pair = this.keymap[index]?.find((pair) => pair[0] === key);
+    return pair ? pair[1] : null;
+  }
+
+  delete(key) {
+    let index = this.hashCode(key);
+    if (!this.keymap[index]) return null;
+
+    let pairIndex = this.keymap[index].findIndex((pair) => pair[0] === key);
+    if (pairIndex === -1) return null;
+
+    return this.keymap[index].splice(pairIndex, 1)[0][1];
+  }
+}
+
 // Binary Tree
 
 // *********** Algorithms ***********
