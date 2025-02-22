@@ -252,6 +252,23 @@ class BinaryTree {
 
 // *********** Algorithms ***********
 
-// Sorting
+// QuickSort
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const pivot = arr[0];
+  const less = [];
+  const greater = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    arr[i] < pivot ? less.push(arr[i]) : greater.push(arr[i]);
+  }
+
+  return [...quickSort(less), pivot, ...quickSort(greater)];
+}
+
+// Bubble Sort
+
+// Merge Sort
+
 // Binary Search
-// Recursion
