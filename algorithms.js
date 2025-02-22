@@ -213,6 +213,42 @@ class HashTable {
 }
 
 // Binary Tree
+class TreeNode {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinaryTree {
+  constructor() {
+    this.root = null;
+  }
+
+  insert(value) {
+    const newNode = new TreeNode(value);
+    !this.root ? (this.root = newNode) : this._insertNode(this.root, newNode);
+  }
+
+  _insertNode(node, newNode) {
+    if (newNode.value < node.value) {
+      !node.left ? (node.left = newNode) : this._insertNode(node.left, newNode);
+    } else {
+      !node.right
+        ? (node.right = newNode)
+        : this._insertNode(node.right, newNode);
+    }
+  }
+
+  inOrderTraversal(node = this.root) {
+    if (node !== null) {
+      this.inOrderTraversal(node.left);
+      console.log(node.value);
+      this.inOrderTraversal(node.right);
+    }
+  }
+}
 
 // *********** Algorithms ***********
 
