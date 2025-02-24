@@ -253,19 +253,33 @@ class BinaryTree {
 // *********** Algorithms ***********
 
 // QuickSort
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = partition(arr, left, right);
+    quickSort(arr, left, pivotIndex - 1); // Sort left part
+    quickSort(arr, pivotIndex + 1, right); // Sort right part
+  }
+  return arr;
+}
 
-  const pivot = arr[0];
-  const less = [];
-  const greater = [];
+function partition(arr, left, right) {
+  let pivot = arr[right]; // Choosing the last element as pivot
+  let i = left - 1; // Index for smaller elements
 
-  for (let i = 1; i < arr.length; i++) {
-    arr[i] < pivot ? less.push(arr[i]) : greater.push(arr[i]);
+  for (let j = left; j < right; j++) {
+    if (arr[j] <= pivot) {
+      i++;
+      [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
+    }
   }
 
-  return [...quickSort(less), pivot, ...quickSort(greater)];
+  [arr[i + 1], arr[right]] = [arr[right], arr[i + 1]]; // Swap pivot to correct position
+  return i + 1; // Return pivot index
 }
+
+// Example usage:
+let arr = [8, 4, 7, 3, 9, 1];
+console.log(quickSort(arr)); // Output: [1, 3, 4, 7, 8, 9]
 
 // Bubble Sort
 
