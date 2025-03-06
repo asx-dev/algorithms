@@ -292,8 +292,6 @@ function bubbleSort(arr) {
   return arr;
 }
 
-bubbleSort([5, 3, 8, 4, 6]);
-
 // Merge Sort
 
 // Binary Search
