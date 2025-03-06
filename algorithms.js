@@ -278,12 +278,11 @@ function partition(arr, start, end) {
 }
 
 // Bubble Sort
-// TODO: Change length implementation, review why it should be arr.length
 function bubbleSort(arr) {
-  const length = arr.length - 1;
+  const length = arr.length;
 
-  for (let i = 0; i < length; i++) {
-    for (let j = 0; j < length - i; j++) {
+  for (let i = 0; i < length - 1; i++) {
+    for (let j = 0; j < length - 1 - i; j++) {
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
